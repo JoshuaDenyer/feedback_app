@@ -1,0 +1,29 @@
+@import "bootstrap";
+
+/* universal */
+
+h1 {
+	text-align: center;
+}
+
+body {
+
+
+}
+/* footer */
+
+.feedback {
+	background: #333333;
+	width: 400px;
+	margin-bottom: 0;
+	color: white;
+	position: absolute;
+	overflow: hidden;
+	bottom: 0;
+	/*margins: auto;*/
+	padding-left: 5em;
+	text-align: center;
+	right: 100px;
+
+
+}

@@ -1,4 +1,20 @@
 %footer.footer
 	.feedback 
 		%h2 Feedback!
-		%p This is where the user pusts all their feedack
+
+		.feedbackform
+			= form_for(@feedback = Feedback.new, :html => {:id => "formID" }) do |f|
+				= render 'shared/error_messages', object: f.object
+				
+				= f.label :name
+				= f.text_area :name
+
+				= f.label :email
+				= f.text_area :email
+
+				= f.label :feedback
+				= f.text_area :feedback
+
+				= f.submit "Submit", class: "btn btn-large btn-primary"
+			
+
