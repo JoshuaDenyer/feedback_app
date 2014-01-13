@@ -6,14 +6,25 @@
 $(document).ready ()->
 	feedbackform = $('.feedbackform') #.css('height', 'toggle')
 
-	$("div.feedback h2").on "mouseover", ->
-		$this = $(this)
-		console.log(this)
-		# $this.animate "bottom": "-400"
-		feedbackform.animate "height": '250'
+	$('html').click (event)->
+		# feedbackform.animate "height": '0'
+		console.log(event.target);
+		clicked = event.target;
+		$(clicked).css('color', 'red')
+		console.log($(clicked).parents('div.feedback') )	
+		if !($(clicked).parents('div.feedback')).is($('div.feedback'))
+			feedbackform.animate "height": '0'
 
-	$('.feedback').on "mouseout", ->
-		feedbackform.animate "height": '0'
+
+
+	$("div.feedback h3").on "mouseover", (event) ->
+		$this = $(this)
+		# $this.animate "bottom": "-400"
+		# event.stopPropagation()
+		feedbackform.animate "height": '310'
+
+	# $('.feedback').on "mouseout", ->
+	#	feedbackform.animate "height": '0'
 
 
 	# $("#formID").ajaxForm ->
