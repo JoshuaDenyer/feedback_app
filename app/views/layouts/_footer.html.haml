@@ -1,20 +1,22 @@
 %footer.footer
 	.feedback 
 		%h3 Feedback!
+		.feedbackArea
+			#feedbackAlert
+			.feedbackform
+				= form_for(@feedback = Feedback.new, remote: true, html: {id: "formID" }) do |f|
+					= render 'shared/error_messages', object: f.object 
 
-		.feedbackform
-			= form_for(@feedback = Feedback.new, :html => {:id => "formID" }) do |f|
-				= render 'shared/error_messages', object: f.object
+					
+					= f.label :name
+					= f.text_area :name
+
+					= f.label :email
+					= f.text_area :email
+
+					= f.label :feedback
+					= f.text_area :feedback
+
+					= f.submit "Submit", class: "btn btn-large btn-primary"
 				
-				= f.label :name
-				= f.text_area :name
-
-				= f.label :email
-				= f.text_area :email
-
-				= f.label :feedback
-				= f.text_area :feedback
-
-				= f.submit "Submit", class: "btn btn-large btn-primary"
-			
 

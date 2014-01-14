@@ -1,0 +1,38 @@
+
+(function(){
+
+
+
+var container = $('.feedback');
+
+
+
+	
+
+	
+
+
+<% if @feedback.errors.any? %>
+
+<% @feedback.errors.full_messages.each do |error| %>
+  $('#feedbackAlert').append('<p><%= escape_javascript( error ) %></p>');
+<% end %>
+
+container.find('h3').css('color', 'red');
+
+<% else %>
+  container.find('h3').css('color', 'green');
+
+  container.find('#feedbackAlert').text("Thank You!!!!").show();
+
+container.find('.feedbackform').hide();
+
+container.find('#formID')[0].reset();
+<% end %>
+
+})();
+
+
+
+
+

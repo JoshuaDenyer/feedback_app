@@ -4,24 +4,32 @@
 
 
 $(document).ready ()->
-	feedbackform = $('.feedbackform') #.css('height', 'toggle')
+	feedbackArea = $('.feedbackArea') #.css('height', 'toggle')
 
 	$('html').click (event)->
-		# feedbackform.animate "height": '0'
-		console.log(event.target);
+		# feedbackArea.animate "height": '0'
+		# console.log(event.target);
 		clicked = event.target;
-		$(clicked).css('color', 'red')
-		console.log($(clicked).parents('div.feedback') )	
+		# console.log($(clicked).parents('div.feedback') )	
 		if !($(clicked).parents('div.feedback')).is($('div.feedback'))
-			feedbackform.animate "height": '0'
+			feedbackArea.animate "height": '0', ->
+				$this = $(this)
+				$this.find('.feedbackform').show()
+				$this.find('#feedbackAlert').hide()
 
+
+	$('#formID').bind "ajax:failure", (e, xhr, status, error) ->
+		# $('#formID').prepend("<p> error </p>")
+		$("<p></p>",
+			text: xhr
+		).insertBefore $("#formID")
 
 
 	$("div.feedback h3").on "mouseover", (event) ->
 		$this = $(this)
 		# $this.animate "bottom": "-400"
 		# event.stopPropagation()
-		feedbackform.animate "height": '310'
+		feedbackArea.animate "height": '310'
 
 	# $('.feedback').on "mouseout", ->
 	#	feedbackform.animate "height": '0'

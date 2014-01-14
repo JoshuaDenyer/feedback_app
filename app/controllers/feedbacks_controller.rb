@@ -1,19 +1,32 @@
 class FeedbacksController < ApplicationController
 
 	def create
-		@feedback = Feedback.new(feedback_params, devices: 3, orgId: 5, url: "/")
+
+		@feedback = Feedback.new(feedback_params)
 		@feedback.devices = 3
 		@feedback.orgId = 5
 		@feedback.url = "/"
 
-		if @feedback.save
-			#render text: params.inspect
-			flash[:success] = "Feedback was sent!"
-			redirect_to :back
-		else
-			flash[:error] = "Feedback failed"
-			redirect_to :back
+			
+		
+
+		respond_to do |format|
+			if @feedback.save
+				@error = false
+				format.html { redirect_to :back }
+				format.js {}
+			else
+				@error = true
+				format.html { redirect_to :back }
+				format.js {}
+			end
 		end
+
+		# $("<p></p>", { text: @feedback.errors.full_messages }).insertBefore($("#formID"))'}
+		# :js=>' render '
+
+		
+
 	end
 
 	private

@@ -21,11 +21,17 @@ describe "Feedbacks Spec" do
 				fill_in "Name", 	with: "Example User"
 				fill_in "Email", 	with: "user@example.com"
 				fill_in "Feedback", with: "This is some example feedback"
-				click_button "Submit"
 			end	
 
 			it "should create an entry in feedback database" do
 				expect { click_button "Submit" }.to change(Feedback, :count).by(1)
+				
+			end
+
+			describe "submit correctly" do
+				before {click_button "Submit"}
+
+				it { should have_content("Thank You")}
 			end
 		end
 
