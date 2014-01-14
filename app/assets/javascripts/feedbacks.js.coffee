@@ -15,7 +15,7 @@ $(document).ready ()->
 			feedbackArea.animate "height": '0', ->
 				$this = $(this)
 				$this.find('.feedbackform').show()
-				$this.find('#feedbackAlert').hide()
+				$this.find('#feedbackAlert').html("") 	# Clear??
 
 
 	$('#formID').bind "ajax:failure", (e, xhr, status, error) ->
@@ -29,7 +29,7 @@ $(document).ready ()->
 		$this = $(this)
 		# $this.animate "bottom": "-400"
 		# event.stopPropagation()
-		feedbackArea.animate "height": '310'
+		feedbackArea.animate "height": '320'
 
 	# $('.feedback').on "mouseout", ->
 	#	feedbackform.animate "height": '0'

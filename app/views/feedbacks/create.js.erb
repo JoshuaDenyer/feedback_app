@@ -5,29 +5,35 @@
 
 var container = $('.feedback');
 
-
-
-	
-
-	
-
+var formHeight = $('.feedbackform').height();
 
 <% if @feedback.errors.any? %>
 
-<% @feedback.errors.full_messages.each do |error| %>
-  $('#feedbackAlert').append('<p><%= escape_javascript( error ) %></p>');
-<% end %>
+	$('#feedbackAlert').html("<%= escape_javascript( render 'shared/feedback_error_messages') %>"); 
 
-container.find('h3').css('color', 'red');
+	// <% @feedback.errors.full_messages.each do |error| %>
+	
+	// 	$('#feedbackAlert').append('<p><%= escape_javascript( error ) %></p>');
+
+	// <% end %>
+
+	var alertHeight = $('#feedbackAlert').outerHeight();
+	
+	var newHeight = (alertHeight + 320);
+	console.log(alertHeight + "and" + formHeight);
+
+	$('.feedbackArea').animate({ "height": newHeight });
+
+	container.find('h3').css('color', 'red');
 
 <% else %>
-  container.find('h3').css('color', 'green');
+	container.find('h3').css('color', 'green');
 
-  container.find('#feedbackAlert').text("Thank You!!!!").show();
+	container.find('#feedbackAlert').text("Thank You!!!!").show();
 
-container.find('.feedbackform').hide();
+	container.find('.feedbackform').hide();
 
-container.find('#formID')[0].reset();
+	container.find('#formID')[0].reset();
 <% end %>
 
 })();
