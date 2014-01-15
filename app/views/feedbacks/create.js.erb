@@ -6,29 +6,35 @@
 var container = $('.feedback');
 
 var formHeight = $('.feedbackform').height();
+var alert = conatiner.find('#feedbackAlert')
 
 <% if @feedback.errors.any? %>
 
-	$('#feedbackAlert').html("<%= escape_javascript( render 'shared/feedback_error_messages') %>"); 
+	if ($('#feedbackAlert').html() === "" )
+		$('#feedbackAlert').hide();
+		// $('#feedbackAlert').css('height' , '0');
 
-	// <% @feedback.errors.full_messages.each do |error| %>
-	
-	// 	$('#feedbackAlert').append('<p><%= escape_javascript( error ) %></p>');
-
-	// <% end %>
+	curAlertHeight = $('#feedbackAlert').html("<%= escape_javascript( render 'shared/feedback_error_messages') %>")
+										.height(); 
+	$('#feedbackAlert').css('height', 'auto');
 
 	var alertHeight = $('#feedbackAlert').outerHeight();
+	$('#feedbackAlert').css('height', curAlertHeight);
 	
+	if (!($('#feedbackAlert').is(":visible")) )
+		$('#feedbackAlert').css('height' , '0').show();
+
 	var newHeight = (alertHeight + 320);
 	console.log(alertHeight + "and" + formHeight);
 
-	$('.feedbackArea').animate({ "height": newHeight });
-
-	container.find('h3').css('color', 'red');
+	$('.feedbackArea').animate({ 
+		"height": newHeight 
+	}, { duration: 500, queue: false }); 
+	$('#feedbackAlert').show().animate({ 
+		"height": alertHeight
+	}, { duration: 500, queue: false });
 
 <% else %>
-	container.find('h3').css('color', 'green');
-
 	container.find('#feedbackAlert').text("Thank You!!!!").show();
 
 	container.find('.feedbackform').hide();

@@ -6,6 +6,8 @@
 $(document).ready ()->
 	feedbackArea = $('.feedbackArea') #.css('height', 'toggle')
 
+
+
 	$('html').click (event)->
 		# feedbackArea.animate "height": '0'
 		# console.log(event.target);
@@ -15,7 +17,7 @@ $(document).ready ()->
 			feedbackArea.animate "height": '0', ->
 				$this = $(this)
 				$this.find('.feedbackform').show()
-				$this.find('#feedbackAlert').html("") 	# Clear??
+				$this.find('#feedbackAlert').html("").css('height','auto') 	# Clear??
 
 
 	$('#formID').bind "ajax:failure", (e, xhr, status, error) ->

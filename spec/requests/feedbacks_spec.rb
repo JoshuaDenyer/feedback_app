@@ -28,10 +28,10 @@ describe "Feedbacks Spec" do
 				
 			end
 
-			describe "submit correctly" do
+			describe "submit valid info" do
 				before {click_button "Submit"}
 
-				it { should have_content("Thank You")}
+				it { should have_content("Thank You!")}
 			end
 		end
 
@@ -41,7 +41,11 @@ describe "Feedbacks Spec" do
 			end
 		end
 
-		
+		describe "submit invalid info" do
+			before {click_button "Submit"}
+
+			it { should have_content("error")}
+		end
 	end
 
 end
