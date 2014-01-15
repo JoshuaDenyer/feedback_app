@@ -3,12 +3,6 @@ class FeedbacksController < ApplicationController
 	def create
 
 		@feedback = Feedback.new(feedback_params)
-		@feedback.devices = 3
-		@feedback.orgId = 5
-		@feedback.url = "/"
-
-			
-		
 
 		respond_to do |format|
 			if @feedback.save

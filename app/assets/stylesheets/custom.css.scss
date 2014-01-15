@@ -2,6 +2,8 @@
 
 /* universal */
 
+
+
 h1 {
 	text-align: center;
 }
@@ -25,18 +27,41 @@ body {
 	/*text-align: center;*/
 	right: 100px;
 
+	border-top-left-radius:2em;
+	border-top-right-radius:2em;
+/*	border-bottom-right-radius:2em;
+	border-bottom-left-radius:2em*/
+
+	.feedbackSuccess {
+		text-align: center;
+		font-size: 2em;
+		padding-top: 3em;
+	}
+
 	#feedbackAlert {
 		/*display: none;*/
+		width: 80%;
+		margin: 0 auto;
 	}
 	
-	.feedbackform {
-		height: 0px;
+	.feedbackForm {
+		/*height: 0px;*/
 		width: 80%;
 		margin: 0 auto;
 		position: relative;
+		padding-bottom: 0.5em;
+
 
 		textarea {
-			width: 100%;
+			width: 95%;
+			border: 1px solid #bbb;
+			
+			/*height: 1.5em;*/
+			height: auto !important;
+			resize: none;
+			vertical-align: middle;
+
+
 		}
 	}
 

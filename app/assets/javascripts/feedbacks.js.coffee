@@ -4,37 +4,36 @@
 
 
 $(document).ready ()->
-	feedbackArea = $('.feedbackArea') #.css('height', 'toggle')
+	feedbackArea = $('.feedbackArea')
+	container = $('.feedback');
 
-
+	AreaHeight = feedbackArea.height()
+	feedbackArea.css "height", '0'
 
 	$('html').click (event)->
-		# feedbackArea.animate "height": '0'
-		# console.log(event.target);
 		clicked = event.target;
-		# console.log($(clicked).parents('div.feedback') )	
-		if !($(clicked).parents('div.feedback')).is($('div.feedback'))
+		if !($(clicked).parents('div.feedback')).is(container)
 			feedbackArea.animate "height": '0', ->
 				$this = $(this)
-				$this.find('.feedbackform').show()
-				$this.find('#feedbackAlert').html("").css('height','auto') 	# Clear??
-
+				$this.find('.feedbackForm').show()
+				$this.find('#feedbackAlert').html("")
+											.css('height','auto')
+											.removeClass('feedbackSuccess')
 
 	$('#formID').bind "ajax:failure", (e, xhr, status, error) ->
-		# $('#formID').prepend("<p> error </p>")
 		$("<p></p>",
-			text: xhr
+			text: error
 		).insertBefore $("#formID")
 
 
-	$("div.feedback h3").on "mouseover", (event) ->
-		$this = $(this)
-		# $this.animate "bottom": "-400"
-		# event.stopPropagation()
-		feedbackArea.animate "height": '320'
+	container.find("h3").on "mouseover", () ->
+		feedbackArea.animate "height": AreaHeight
+
+
+
 
 	# $('.feedback').on "mouseout", ->
-	#	feedbackform.animate "height": '0'
+	#	feedbackForm.animate "height": '0'
 
 
 	# $("#formID").ajaxForm ->

@@ -5,39 +5,39 @@
 
 var container = $('.feedback');
 
-var formHeight = $('.feedbackform').height();
-var alert = conatiner.find('#feedbackAlert')
+var formHeight = $('.feedbackForm').height();
+var alert = $('#feedbackAlert');
 
 <% if @feedback.errors.any? %>
 
-	if ($('#feedbackAlert').html() === "" )
-		$('#feedbackAlert').hide();
-		// $('#feedbackAlert').css('height' , '0');
+	if (alert.html() === "" ) 	
+		alert.hide();
 
-	curAlertHeight = $('#feedbackAlert').html("<%= escape_javascript( render 'shared/feedback_error_messages') %>")
-										.height(); 
-	$('#feedbackAlert').css('height', 'auto');
+	curAlertHeight = alert.html("<%= escape_javascript( render 'shared/feedback_error_messages') %>")
+								.height(); 
+	alert.css('height', 'auto');
 
-	var alertHeight = $('#feedbackAlert').outerHeight();
-	$('#feedbackAlert').css('height', curAlertHeight);
+	var alertHeight = alert.outerHeight();
+	alert.css('height', curAlertHeight);
 	
-	if (!($('#feedbackAlert').is(":visible")) )
-		$('#feedbackAlert').css('height' , '0').show();
+	if (!(alert.is(":visible")) )
+		alert.css('height' , '0').show();
 
-	var newHeight = (alertHeight + 320);
+	var newHeight = (alertHeight + formHeight);
 	console.log(alertHeight + "and" + formHeight);
 
 	$('.feedbackArea').animate({ 
 		"height": newHeight 
 	}, { duration: 500, queue: false }); 
-	$('#feedbackAlert').show().animate({ 
+
+	alert.show().animate({ 
 		"height": alertHeight
 	}, { duration: 500, queue: false });
 
 <% else %>
-	container.find('#feedbackAlert').text("Thank You!!!!").show();
+	alert.addClass("feedbackSuccess").text("Thank You!").show();
 
-	container.find('.feedbackform').hide();
+	container.find('.feedbackForm').hide();
 
 	container.find('#formID')[0].reset();
 <% end %>
