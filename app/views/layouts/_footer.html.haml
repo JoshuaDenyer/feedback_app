@@ -7,20 +7,23 @@
 				= form_for(@feedback = Feedback.new, remote: true, html: {id: "formID" }) do |f|
 					
 					= f.label :name
-					= f.text_area :name, :rows => 1, placeholder: "Please enter your name"
+					= f.text_field :name, placeholder: "Please enter your name", class: "textfield"
 
 					= f.label :email
-					= f.text_area :email, :rows => 1, placeholder: "Please enter your email"
+					= f.text_field :email, placeholder: "Please enter your email", class: "textfield"
 
 					= f.label :feedback
-					= f.text_area :feedback, :rows => 8, placeholder: "Please enter your feedback"
+					= f.text_area :feedback, rows: 8, placeholder: "Please enter your feedback"
 
-					= f.hidden_field :url, :value => url_for(params)
+					= f.hidden_field :url, value: url_for(params)
 
 					= f.hidden_field :devices, :value => 4
 
 					= f.hidden_field :orgId, :value => 6		
 
 					= f.submit "Submit", class: "btn btn-large btn-primary"
+					
+					%button.btn.btn-large#cancel
+						Cancel
 				
 

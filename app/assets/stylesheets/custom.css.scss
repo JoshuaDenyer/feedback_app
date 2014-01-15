@@ -27,8 +27,8 @@ body {
 	/*text-align: center;*/
 	right: 100px;
 
-	border-top-left-radius:2em;
-	border-top-right-radius:2em;
+	border-top-left-radius:1.5em;
+	border-top-right-radius:1.5em;
 /*	border-bottom-right-radius:2em;
 	border-bottom-left-radius:2em*/
 
@@ -36,12 +36,14 @@ body {
 		text-align: center;
 		font-size: 2em;
 		padding-top: 3em;
+		color: black;
 	}
 
 	#feedbackAlert {
 		/*display: none;*/
 		width: 80%;
 		margin: 0 auto;
+		color: red;
 	}
 	
 	.feedbackForm {
@@ -52,27 +54,28 @@ body {
 		padding-bottom: 0.5em;
 
 
-		textarea {
+		textarea, .textfield {
 			width: 95%;
 			border: 1px solid #bbb;
 			
 			/*height: 1.5em;*/
 			height: auto !important;
 			resize: none;
-			vertical-align: middle;
+		}
 
-
+		btn {
+			text-align: center;
+			width: 100%;
 		}
 	}
 
 	h3 {
 		font-size: 1.5em;
 		text-align: center;
-		line-height: 1em;
-
+		line-height: 1.5em;
+		/*height: 10px;*/
+		/*vertical-align: middle;*/
+		margin: 0 auto;
 	}
-
-
-
 }
 

@@ -6,11 +6,9 @@ class FeedbacksController < ApplicationController
 
 		respond_to do |format|
 			if @feedback.save
-				@error = false
 				format.html { redirect_to :back }
 				format.js {}
 			else
-				@error = true
 				format.html { redirect_to :back }
 				format.js {}
 			end

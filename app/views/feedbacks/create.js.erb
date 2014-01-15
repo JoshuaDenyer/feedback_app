@@ -1,11 +1,9 @@
 
 (function(){
 
-
-
 var container = $('.feedback');
 
-var formHeight = $('.feedbackForm').height();
+var formHeight = $('.feedbackForm').outerHeight();
 var alert = $('#feedbackAlert');
 
 <% if @feedback.errors.any? %>
@@ -14,6 +12,7 @@ var alert = $('#feedbackAlert');
 		alert.hide();
 
 	curAlertHeight = alert.html("<%= escape_javascript( render 'shared/feedback_error_messages') %>")
+								.css('color', 'red')
 								.height(); 
 	alert.css('height', 'auto');
 
@@ -24,7 +23,6 @@ var alert = $('#feedbackAlert');
 		alert.css('height' , '0').show();
 
 	var newHeight = (alertHeight + formHeight);
-	console.log(alertHeight + "and" + formHeight);
 
 	$('.feedbackArea').animate({ 
 		"height": newHeight 
@@ -35,7 +33,10 @@ var alert = $('#feedbackAlert');
 	}, { duration: 500, queue: false });
 
 <% else %>
-	alert.addClass("feedbackSuccess").text("Thank You!").show();
+
+	alert.addClass("feedbackSuccess").css('color', 'white')
+									.text("Thank You!")
+									.show();
 
 	container.find('.feedbackForm').hide();
 

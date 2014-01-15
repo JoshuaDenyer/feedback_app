@@ -7,19 +7,26 @@ $(document).ready ()->
 	feedbackArea = $('.feedbackArea')
 	container = $('.feedback');
 
+	close = () ->
+		feedbackArea.animate "height": '0', ->
+			$this = $(this)
+			$this.find('.feedbackForm').show()
+			$this.find('#feedbackAlert').html("")
+										.css('height','auto')
+										.removeClass('feedbackSuccess')
+
 	AreaHeight = feedbackArea.height()
 	feedbackArea.css "height", '0'
 
 	$('html').click (event)->
 		clicked = event.target;
 		if !($(clicked).parents('div.feedback')).is(container)
-			feedbackArea.animate "height": '0', ->
-				$this = $(this)
-				$this.find('.feedbackForm').show()
-				$this.find('#feedbackAlert').html("")
-											.css('height','auto')
-											.removeClass('feedbackSuccess')
+			close()
 
+	feedbackArea.find('#cancel').on 'click', (e) ->
+		e.preventDefault()
+		close()
+		
 	$('#formID').bind "ajax:failure", (e, xhr, status, error) ->
 		$("<p></p>",
 			text: error
